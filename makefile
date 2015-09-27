@@ -1,5 +1,5 @@
-CXX        := gpp-4.8
-CXXFLAGS   := -pedantic -std=cpp11 -Wall
+CXX        := g++-4.8
+CXXFLAGS   := -pedantic -std=c++11 -Wall
 LDFLAGS    := -lgtest -lgtest_main -pthread
 GCOV       := gcov-4.8
 GCOVFLAGS  := -fprofile-arcs -ftest-coverage
