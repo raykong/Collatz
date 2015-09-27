@@ -35,18 +35,18 @@ status:
 
 test: RunCollatz.tmp TestCollatz.tmp
 
-RunCollatz: Collatz.h Collatz.cpp RunCollatz.cpp
-	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.cpp RunCollatz.cpp -o RunCollatz
+RunCollatz: Collatz.h Collatz.c++ RunCollatz.c++
+	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.c++ RunCollatz.c++ -o RunCollatz
 
 RunCollatz.tmp: RunCollatz
 	./RunCollatz < RunCollatz.in > RunCollatz.tmp
 	diff RunCollatz.tmp RunCollatz.out
 
-TestCollatz: Collatz.h Collatz.cpp TestCollatz.cpp
-	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.cpp TestCollatz.cpp -o TestCollatz $(LDFLAGS)
+TestCollatz: Collatz.h Collatz.c++ TestCollatz.c++
+	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.c++ TestCollatz.c++ -o TestCollatz $(LDFLAGS)
 
 TestCollatz.tmp: TestCollatz
 	$(VALGRIND) ./TestCollatz                                       >  TestCollatz.tmp 2>&1
-	$(GCOV) -b Collatz.cpp     | grep -A 5 "File 'Collatz.cpp'"     >> TestCollatz.tmp
-	$(GCOV) -b TestCollatz.cpp | grep -A 5 "File 'TestCollatz.cpp'" >> TestCollatz.tmp
+	$(GCOV) -b Collatz.c++     | grep -A 5 "File 'Collatz.c++'"     >> TestCollatz.tmp
+	$(GCOV) -b TestCollatz.c++ | grep -A 5 "File 'TestCollatz.c++'" >> TestCollatz.tmp
 	cat TestCollatz.tmp
